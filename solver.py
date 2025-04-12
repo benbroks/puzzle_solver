@@ -35,10 +35,23 @@ def solve(month, day, placed_piecs, unplaced_pieces):
                 b.remove_piece(unplaced_piece, open_space, o_idx)
     return False
 
-solve(
-    month=4,
-    day=12,
-    placed_piecs=[],
-    unplaced_pieces=[block, l_piece, u_piece, long_l_piece, t_piece, 
-                     d_piece, step_piece, weird_step]
-)
+if __name__ == "__main__":
+    import click
+    
+    @click.command()
+    @click.argument('month', type=int)
+    @click.argument('day', type=int)
+    def cli(month, day):
+        """Solve the calendar puzzle for a given month and day."""
+        result = solve(
+            month=month,
+            day=day,
+            placed_piecs=[],
+            unplaced_pieces=[block, l_piece, u_piece, long_l_piece, t_piece, 
+                             d_piece, step_piece, weird_step]
+        )
+        
+        if not result:
+            click.echo(f"No solution found for {month}/{day}")
+    
+    cli()
