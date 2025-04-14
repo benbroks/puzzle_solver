@@ -51,7 +51,7 @@ class Board:
         self.occupied[(month_row, month_col)] = True
 
         day_row = (day - 1) // self.NUM_COLS + 2
-        day_col = day % self.NUM_COLS - 1
+        day_col = (day - 1) % self.NUM_COLS 
         self.occupied[(day_row, day_col)] = True
     
     def open_spaces(self):
